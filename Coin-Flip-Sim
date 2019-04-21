@@ -1,0 +1,55 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class CoinFlip{	
+	
+	private static Scanner input = new Scanner(System.in);
+	private static Random r = new Random();	
+	
+	//Tally for heads ( value 1 )
+	private static int heads = 0;
+	
+	//Tally for tails ( value 2 )
+	private static int tails = 0;
+
+	public static void main(String[] args){
+	
+		//Create field to hold value of number of times coin to be flipped
+		int number = 0;		
+		
+		System.out.print("Enter the number of times you want to flip the coin: ");
+		
+		number = input.nextInt(); // User inputs number of times to flip coin
+		
+		flipCoin(number); // Call method to flip coin requested number to times
+		
+		System.out.println("The coin was flipped "
+				+ number + " time.  It landed heads " + heads + " times"
+				+ " and tails " + tails + " times.");	
+	}
+	
+	public static void flipCoin(int times ){
+  
+		int value = 0;//field to hold states as they land (1-heads or 2-tails)
+		
+		for(int i = 1; i <= times; i++){
+			
+			value = 1 + r.nextInt(2); // Random choice between 1 - heads or 2 - tails
+			
+			if(value == 1){ //If random value is 1, the heads is landed and tallied
+			
+				heads += 1;
+				System.out.println("Heads");
+				
+			} else {//Otherwise, tails is landed and tallied
+			
+				tails += 1;
+				System.out.println("Tails");
+			
+			}			
+		
+		}	
+		
+	}
+
+}
