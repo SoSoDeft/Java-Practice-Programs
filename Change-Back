@@ -1,0 +1,152 @@
+import java.util.Scanner;
+import java.util.Random;
+import java.text.DecimalFormat;
+
+public class ChangeMaker{
+
+	private static Scanner scan = new Scanner(System.in);
+	private static Random r = new Random();
+	private static DecimalFormat df = new DecimalFormat("0.00"); // Format double to 2 decimal points
+	
+	public static void main(String[] args){
+	
+		double cost = 0;
+		double wallet = 0;
+		
+		
+		System.out.println("I like that item! How much does it cost?");
+		cost = itemPrice();
+				
+		System.out.println("This item costs " + "$" + df.format(cost) + "\nHow much do you have to spend?");
+		
+		wallet = itemPrice();
+				
+		System.out.println("I have " + "$" +df.format(wallet) + " to spend.");
+		
+		if(wallet < cost){
+		
+			System.out.println("Sorry. You don't quite have enough.");
+			
+			
+			
+		} else {
+			
+			double remainder = wallet - cost;
+		
+			System.out.println("Your change back is " + "$" + df.format(remainder));
+						
+			
+			sortByDenom(Double.parseDouble(df.format(remainder)));
+		}
+	}
+	
+	
+	//Generates a random dollar amount
+	private static double itemPrice(){
+	
+		double dollarAmount = (double)1 + r.nextInt(100);
+		double changeAmount = r.nextDouble();
+		
+		
+		return dollarAmount + changeAmount;
+	
+	}
+	
+	//Breakdown change into respective denominations
+	private static void sortByDenom(double due){
+	
+		double total = due;
+	
+		int hundreds = 0;
+		int twenties = 0;
+		int tens = 0;
+		int fives = 0;
+		int ones = 0;
+		int quarters = 0;
+		int dimes = 0;
+		int nickels = 0;
+		int pennies = 0;
+		
+		while(total >= 100){
+				
+			total -= 100;
+			hundreds++;	
+			
+			System.out.println(total);		
+			
+		}
+		
+		while(total >= 20){
+				
+			total -= 20;
+			twenties++;	
+			System.out.println(total);			
+			
+		}
+		
+		while(total >= 10){
+				
+			total -= 10;
+			tens++;		
+			System.out.println(total);		
+			
+		}
+		
+		while(total >= 5){
+				
+			total -= 5;
+			fives++;	
+			System.out.println(total);			
+			
+		}
+		
+		while(total >= 1){
+				
+			total -= 1;
+			ones++;		
+			System.out.println(total);		
+			
+		}
+		
+		while(total >= .25){
+				
+			total -= .25;
+			quarters++;	
+			System.out.println(total);			
+			
+		}
+		
+		while(total >= .10){
+				
+			total -= .10;
+			dimes++;	
+			System.out.println(total);			
+			
+		}
+		
+		while(total >= .05){
+				
+			total -= .05;
+			nickels++;	
+			System.out.println(total);			
+			
+		}
+		
+		while(total >= .01  && total >= .005){
+				
+			total -= .01;
+			pennies++;	
+			System.out.println(total);			
+			
+		}
+		
+		System.out.println("\n\n\nThat breaks down to " + hundreds + " hundreds, "
+				+ twenties + " twenties, " + tens + " tens " + fives
+				+ " fives, " + ones + " ones,\n " + quarters + " quarters "
+				+ dimes + " dimes, " + nickels + " nickels, and " + pennies + " pennies." );
+	
+	
+	}
+
+
+}
