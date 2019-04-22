@@ -132,7 +132,7 @@ public class ChangeMaker{
 			
 		}
 		
-		while(total >= .01  && total >= .005){
+		while( total >= .005){
 				
 			total -= .01;
 			pennies++;	
